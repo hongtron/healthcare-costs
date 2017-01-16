@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h2 align="center">{{ search_params['drg'] }}<br>AGI {{ search_params['range'] }}</h2>
+
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#agi" aria-controls="agi" role="tab" data-toggle="tab">AGI</a></li>
+    <li role="presentation"><a href="#ti" aria-controls="ti" role="tab" data-toggle="tab">Total Income</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="agi">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>State</td>
+            <td>Avg Total Payments</td>
+            <td>Avg Total Payments<br>(% of AGI)</td>
+            <td>Avg Covered Charges</td>
+            <td>Avg Covered Charges<br>(% of AGI)</td>
+            <td>Avg Medicare Payments</td>
+            <td>Avg Medicare Payments<br>(% of AGI)</td>
+          </tr>
+        </thead>
+      {% for result in results %}
+      <tr>
+        <td>{{ result['state'] }}</td>
+        <td>{{ '$''%.2f'%(result['avg_total_payments']) }}</td>
+        <td>{{ '%.2f'%(result['avg_total_payments']/result['avg_agi'] * 100) + '%' }}</td>
+        <td>{{ '$''%.2f'%(result['avg_covered_charges']) }}</td>
+        <td>{{ '%.2f'%(result['avg_covered_charges']/result['avg_agi'] * 100) + '%' }}</td>
+        <td>{{ '$''%.2f'%(result['avg_medicare_payments']) }}</td>
+        <td>{{ '%.2f'%(result['avg_medicare_payments']/result['avg_agi'] * 100) + '%' }}</td>
+      </tr>
+      {% endfor %}
+      </table>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="ti">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>State</td>
+            <td>Avg Total Payments</td>
+            <td>Avg Total Payments<br>(% of Total Income)</td>
+            <td>Avg Covered Charges</td>
+            <td>Avg Covered Charges<br>(% of Total Income)</td>
+            <td>Avg Medicare Payments</td>
+            <td>Avg Medicare Payments<br>(% of Total Income)</td>
+          </tr>
+        </thead>
+      {% for result in results %}
+      <tr>
+        <td>{{ result['state'] }}</td>
+        <td>{{ '$''%.2f'%(result['avg_total_payments']) }}</td>
+        <td>{{ '%.2f'%(result['avg_total_payments']/result['avg_total_income'] * 100) + '%' }}</td>
+        <td>{{ '$''%.2f'%(result['avg_covered_charges']) }}</td>
+        <td>{{ '%.2f'%(result['avg_covered_charges']/result['avg_total_income'] * 100) + '%' }}</td>
+        <td>{{ '$''%.2f'%(result['avg_medicare_payments']) }}</td>
+        <td>{{ '%.2f'%(result['avg_medicare_payments']/result['avg_total_income'] * 100) + '%' }}</td>
+      </tr>
+      {% endfor %}
+      </table>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

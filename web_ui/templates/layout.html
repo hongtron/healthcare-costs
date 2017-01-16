@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>MPCS53013 Final Project (Ali Hong)</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static', filename='jumbotron-narrow.css') }}">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='holder.js') }}"></script>
+</head>
+<body>
+
+<div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right" role="tablist">
+          <li role="presentation" class="active"><a href="{{ url_for('home') }}">Home</a></li>
+        </ul>
+        <h3 class="text-muted">Ali Hong MPCS 53013</h3>
+      </div>
+
+      {% block body %}
+      {% endblock %}
+
+      <div class="footer">
+        <p>Ali Hong's Final Project for MPCS53013</p>
+      </div>
+
+</div> <!-- /container -->
+
+
+</body>
+</html>

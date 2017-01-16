@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div align="center">
+<form id="search_form" method="post" action="{{ url_for('run_search') }}">
+  <div class="form-group">
+	<label for="drg">DRG</label>
+		<select class="form-control" id="drg" name="drg">
+      {% for drg, name in drgs.iteritems() %}
+        <option value="{{drg}}">{{name}}</option>
+      {% endfor %}
+		</select>
+  </div>
+<div class="form-group">
+<label for="range">Adjusted Gross Income</label>
+  <select class="form-control" id="range" name="range">
+    <option value="1">$1 - under $25,000</option>
+    <option value="2">$25,000 - under $50,000</option>
+    <option value="3">$50,000 - under $75,000</option>
+    <option value="4">$75,000 - under $100,000</option>
+    <option value="5">$100,000 - under $200,000</option>
+    <option value="6">$200,000 or more</option>
+  </select>
+</div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+</div>
+{% endblock %}
